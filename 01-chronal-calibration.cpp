@@ -45,7 +45,7 @@ int main() {
     int repeated;
     std::set<int> repetitions;
 
-    while (!repeated) repeated = read_repetitions(frequencies, repetitions);
+    repeated = read_repetitions(frequencies, repetitions);
 
     std::cout << "Resulting frequency: " << resulting << std::endl;
     std::cout << "First repeated frequency: " << repeated << std::endl;
