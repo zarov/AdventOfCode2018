@@ -17,7 +17,7 @@ struct claim_t {
 
 int main() {
     std::string line;
-    std::ifstream input ("03-input.txt");
+    std::ifstream input ("input/day03.txt");
 
     std::vector<claim_t> claims;
     claim_t claim;
@@ -57,8 +57,8 @@ int main() {
 
     int fabric[max_claim.w + max_claim.x][max_claim.h + max_claim.y];
     int covered = 0;
-    auto itc = claims.begin();
-    while (itc != claims.end()) {
+    auto itc = claims.cbegin();
+    while (itc != claims.cend()) {
         claim = *itc;
         for (int i = 0; i < claim.w; i++) {
             for (int j = 0; j < claim.h; j++) {
@@ -68,10 +68,35 @@ int main() {
             }
         }
 
-        itc++;
+        ++itc;
+    }
+
+    int clean_claim = 1;
+    itc = claims.cbegin();
+    while (itc != claims.cend()) {
+        claim = *itc;
+        clean_claim = 1;
+        for (int i = 0; i < claim.w; i++) {
+            for (int j = 0; j < claim.h; j++) {
+                if (fabric[claim.x + i][claim.y + j] > 1) {
+                    clean_claim = 0;
+                    break;
+                }
+            }
+
+            if (clean_claim == 0) break;
+        }
+
+        if (clean_claim == 1) {
+            clean_claim = claim.id;
+            break;
+        }
+
+        ++itc;
     }
 
     std::cout << "Square inches within two or more claims: " << covered << std::endl;
+    std::cout << "Claim that came clean and can be cut: " << clean_claim << std::endl;
 
     return 0;
 }

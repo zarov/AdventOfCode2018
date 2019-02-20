@@ -25,12 +25,12 @@ int read_repetitions(std::list<int> frequencies, std::set<int> repetitions) {
 
 int main() {
     std::string line;
-    std::ifstream input ("01-input.txt");
+    std::ifstream input ("input/day01.txt");
 
-    int frequency;
+    int frequency = 0;
     std::list<int> frequencies;
 
-    int resulting;
+    int resulting = 0;
 
     if (input.is_open()) {
         while (getline(input, line)) {
@@ -42,7 +42,7 @@ int main() {
         input.close();
     }
 
-    int repeated;
+    int repeated = 0;
     std::set<int> repetitions;
 
     repeated = read_repetitions(frequencies, repetitions);

@@ -6,7 +6,7 @@
 
 int main() {
     std::string line;
-    std::ifstream input ("02-input.txt");
+    std::ifstream input ("input/day02.txt");
 
     std::vector<std::string> boxes;
     int twos = 0, threes = 0;
