@@ -1,27 +1,13 @@
 // https://adventofcode.com/2018/day/4
-#include <iostream>
-#include <fstream>
-#include <map>
-#include <vector>
-#include <algorithm>
-#include <numeric>
+#include "common.h"
 
 int get_time(std::string record) {
     return stoi(record.substr(15, 2));
 }
 
-int main() {
-    std::string line;
-    std::ifstream input ("input/day04.txt");
-
-    std::vector<std::string> records;
+void day04(const input_t input) {
+    std::vector<std::string> records = input.content;
     std::map<std::string, int[60]> guards;
-
-    if (input.is_open()) {
-        while (getline(input, line)) {
-            records.push_back(line);
-        }
-    }
 
     std::sort(records.begin(), records.end());
 
@@ -78,6 +64,4 @@ int main() {
     std::cout << "Most regular guard is #" << most_regular_guard << std::endl;
     std::cout << "He sleeps the most at " << most_regular_minute << std::endl;
     std::cout << "Therefore the ID multiplied by the minute is " << stoi(most_regular_guard) * most_regular_minute << std::endl;
-
-    return 0;
 }

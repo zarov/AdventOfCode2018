@@ -1,23 +1,10 @@
 // https://adventofcode.com/2018/day/2
-#include <iostream>
-#include <fstream>
-#include <map>
-#include <vector>
+#include "common.h"
 
-int main() {
-    std::string line;
-    std::ifstream input ("input/day02.txt");
-
-    std::vector<std::string> boxes;
+void day02(const input_t input) {
+    std::vector<std::string> boxes = input.content;
     int twos = 0, threes = 0;
     std::string common;
-
-    if (input.is_open()) {
-        while (getline(input, line)) {
-            boxes.push_back(line);
-        }
-        input.close();
-    }
 
     std::sort(boxes.begin(), boxes.end());
 
@@ -54,6 +41,4 @@ int main() {
 
     std::cout << "The checksum is " << twos * threes << std::endl;
     std::cout << "Common letters are " << common << std::endl;
-
-    return 0;
 }

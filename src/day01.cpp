@@ -1,17 +1,15 @@
 // https://adventofcode.com/2018/day/1
-#include <iostream>
-#include <fstream>
-#include <list>
-#include <set>
+#include "common.h"
 
-int read_repetitions(std::list<int> frequencies, std::set<int> repetitions) {
+int read_repetitions(int frequencies[], int len) {
     int repeated = 0;
     int resulting = 0;
+    std::set<int> repetitions;
 
     while (!repeated) {
-        for (std::list<int>::iterator it = frequencies.begin(); it != frequencies.end(); it++) {
-            resulting += *it;
-            if (repetitions.count(resulting) > 0) {
+        for (int i = 0; i < len; ++i) {
+            resulting += frequencies[i];
+            if (repetitions.count(resulting)) {
                 repeated = resulting;
                 break;
             } else {
@@ -20,35 +18,21 @@ int read_repetitions(std::list<int> frequencies, std::set<int> repetitions) {
         }
     }
 
-    return repeated;
+    return resulting;
 }
 
-int main() {
-    std::string line;
-    std::ifstream input ("input/day01.txt");
-
-    int frequency = 0;
-    std::list<int> frequencies;
-
+void day01(const input_t input) {
+    int frequencies[input.length];
+    int fq;
     int resulting = 0;
-
-    if (input.is_open()) {
-        while (getline(input, line)) {
-            frequency = std::stoi(line);
-            frequencies.push_back(frequency);
-            resulting += frequency;
-        }
-
-        input.close();
+    for (int i = 0; i < input.length; ++i) {
+        fq = std::stoi(input.content[i]);
+        frequencies[i] = fq;
+        resulting += fq;
     }
 
-    int repeated = 0;
-    std::set<int> repetitions;
-
-    repeated = read_repetitions(frequencies, repetitions);
+    int repeated = read_repetitions(frequencies, input.length);
 
     std::cout << "Resulting frequency: " << resulting << std::endl;
     std::cout << "First repeated frequency: " << repeated << std::endl;
-
-    return 0;
 }

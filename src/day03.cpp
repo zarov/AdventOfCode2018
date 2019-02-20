@@ -1,9 +1,5 @@
 // https://adventofcode.com/2018/day/3
-#include <iostream>
-#include <fstream>
-#include <map>
-#include <algorithm>
-#include <vector>
+#include "common.h"
 
 struct claim_t {
     int id;
@@ -15,42 +11,37 @@ struct claim_t {
     bool operator< (const claim_t &c) const { return y > c.y; }
 };
 
-int main() {
-    std::string line;
-    std::ifstream input ("input/day03.txt");
-
+void day03(const input_t input) {
     std::vector<claim_t> claims;
     claim_t claim;
     claim_t max_claim;
 
-    if (input.is_open()) {
-        int pos_a, pos_b;
-        while (getline(input, line)) {
-            pos_a = 1;
-            pos_b = line.find(' ');
-            claim.id = stoi(line.substr(pos_a, pos_b - pos_a));
+    int pos_a, pos_b;
+    for (auto line : input.content) {
+        std::cout << "ici " << line << std::endl;
+        pos_a = 1;
+        pos_b = line.find(' ');
+        claim.id = stoi(line.substr(pos_a, pos_b - pos_a));
 
-            pos_a = pos_b;
-            pos_b = line.find(',');
-            claim.x = stoi(line.substr(pos_a + 3, pos_b - pos_a - 3));
+        pos_a = pos_b;
+        pos_b = line.find(',');
+        claim.x = stoi(line.substr(pos_a + 3, pos_b - pos_a - 3));
 
-            pos_a = pos_b;
-            pos_b = line.find(':');
-            claim.y = stoi(line.substr(pos_a + 1, pos_b - pos_a - 1));
+        pos_a = pos_b;
+        pos_b = line.find(':');
+        claim.y = stoi(line.substr(pos_a + 1, pos_b - pos_a - 1));
 
-            pos_a = pos_b;
-            pos_b = line.find('x');
-            claim.w = stoi(line.substr(pos_a + 2, pos_b - pos_a - 2));
-            claim.h = stoi(line.substr(pos_b + 1));
+        pos_a = pos_b;
+        pos_b = line.find('x');
+        claim.w = stoi(line.substr(pos_a + 2, pos_b - pos_a - 2));
+        claim.h = stoi(line.substr(pos_b + 1));
 
-            claims.push_back(claim);
+        claims.push_back(claim);
 
-            if (claim.x > max_claim.x) max_claim.x = claim.x;
-            if (claim.y > max_claim.y) max_claim.y = claim.y;
-            if (claim.w > max_claim.w) max_claim.w = claim.w;
-            if (claim.h > max_claim.h) max_claim.h = claim.h;
-        }
-        input.close();
+        if (claim.x > max_claim.x) max_claim.x = claim.x;
+        if (claim.y > max_claim.y) max_claim.y = claim.y;
+        if (claim.w > max_claim.w) max_claim.w = claim.w;
+        if (claim.h > max_claim.h) max_claim.h = claim.h;
     }
 
     std::sort(claims.begin(), claims.end());
@@ -97,6 +88,4 @@ int main() {
 
     std::cout << "Square inches within two or more claims: " << covered << std::endl;
     std::cout << "Claim that came clean and can be cut: " << clean_claim << std::endl;
-
-    return 0;
 }
