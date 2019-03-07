@@ -14,11 +14,10 @@ struct claim_t {
 void day03(const input_t input) {
     std::vector<claim_t> claims;
     claim_t claim;
-    claim_t max_claim;
+    claim_t max_claim = { 0, 0, 0, 0 };
 
     int pos_a, pos_b;
     for (auto line : input.content) {
-        std::cout << "ici " << line << std::endl;
         pos_a = 1;
         pos_b = line.find(' ');
         claim.id = stoi(line.substr(pos_a, pos_b - pos_a));
