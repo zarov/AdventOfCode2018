@@ -38,19 +38,21 @@ void do_day(day_t day) {
 
 int main(int argc, char *argv[]) {
     int opt;
-    while ((opt = getopt(argc, argv, "a:d:")) != -1) {
+    while ((opt = getopt(argc, argv, "d:")) != -1) {
         switch (opt) {
             case 'd':
                 do_day(days[atoi(optarg) - 1]);
-                break;
-            case 'a':
+                return 0;
             case '?':
-                for (day_t day : days) {
-                    do_day(day);
-                    std::cout << "--------------" << std::endl;
-                }
-                break;
+                std::cout << "Usage: ./advent [-d n] [-a]\n";
+                return 0;
         }
+    }
+
+    int d = 1;
+    for (day_t day : days) {
+        std::cout << "\n----- Day " << d++ << " -----\n";
+        do_day(day);
     }
 
     return 0;
