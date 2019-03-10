@@ -19,5 +19,6 @@ void day03(const input_t);
 void day04(const input_t);
 void day05(const input_t);
 void day06(const input_t);
+void day07(const input_t);
 
 #endif
