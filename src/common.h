@@ -6,6 +6,7 @@
 #include <map>
 #include <numeric>
 #include <set>
+#include <list>
 #include <vector>
 
 struct input_t {
@@ -21,5 +22,6 @@ void day05(const input_t);
 void day06(const input_t);
 void day07(const input_t);
 void day08(const input_t);
+void day09(const input_t);
 
 #endif

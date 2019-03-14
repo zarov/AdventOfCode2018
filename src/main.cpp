@@ -15,7 +15,8 @@ static const day_t days[] = {
     { day05, "input/day05.txt" },
     { day06, "input/day06.txt" },
     { day07, "input/day07.txt" },
-    { day08, "input/day08.txt" }
+    { day08, "input/day08.txt" },
+    { day09, "input/day09.txt" }
 };
 
 void read_input(input_t &input, const std::string &filename) {
