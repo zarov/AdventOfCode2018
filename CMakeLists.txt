@@ -16,4 +16,5 @@ add_executable (advent
   src/day06.cpp
   src/day07.cpp
   src/day08.cpp
-  src/day09.cpp)
+  src/day09.cpp
+  src/day10.cpp)
