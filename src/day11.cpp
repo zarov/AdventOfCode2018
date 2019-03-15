@@ -1,4 +1,4 @@
-// https://adventofcode.com/2018/day/10
+// https://adventofcode.com/2018/day/11
 #include "common.h"
 
 static const int SIZE = 301;
